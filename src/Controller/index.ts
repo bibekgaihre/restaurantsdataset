@@ -1,7 +1,8 @@
 import axios from "axios";
 const searchPlaces = async () => {
+    let apikey="";
     let restaurantData = [];
-    let first = await axios.post(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=51.16342766942609, 10.44767431089163&radius=45000&types=restaurant&key=AIzaSyBYH2XLzDidvgBnoxPORqdsBS7RY6xNKqs`);
+    let first = await axios.post(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=51.16342766942609, 10.44767431089163&radius=45000&types=restaurant&key=${apikey}`);
 
     //run here once
     let pageToken = first.data.next_page_token;
@@ -15,10 +16,10 @@ const searchPlaces = async () => {
 }
 
 async function fetchedOutput(pageToken: any) {
-    console.log(pageToken);
+    let apikey="";
     let remainingRestroData: any = [];
     if (pageToken != "") {
-        let result: any = await axios.post(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=51.16342766942609, 10.44767431089163&radius=45000&types=restaurant&key=AIzaSyBYH2XLzDidvgBnoxPORqdsBS7RY6xNKqs&pageToken=${pageToken}`);
+        let result: any = await axios.post(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=51.16342766942609, 10.44767431089163&radius=45000&types=restaurant&key=${apikey}&pageToken=${pageToken}`);
         remainingRestroData.push(result.data.results);
         console.log(result.data.results);
         pageToken = result.data.next_page_token;

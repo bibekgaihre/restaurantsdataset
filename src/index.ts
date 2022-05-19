@@ -1,5 +1,5 @@
 import express, { Application, Response, Request, NextFunction } from "express";
-// import mongoose, { ConnectOptions } from "mongoose";
+
 import morgan from "morgan";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -17,11 +17,6 @@ declare var process: {
 
 const PORT = process.env.PORT || 8080;
 
-// mongoose.connect(process.env.DATABASE, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//     autoIndex: true
-// } as ConnectOptions).then(() => console.log(`DB connected ${process.env.DATABASE}`));
 
 app.use(cors());
 app.use(express.json());
