@@ -1,6 +1,6 @@
 import axios from "axios";
 const searchPlaces = async () => {
-    let apikey="";
+    let apikey = "";
     let restaurantData = [];
     let first = await axios.post(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=51.16342766942609, 10.44767431089163&radius=45000&types=restaurant&key=${apikey}`);
 
@@ -8,15 +8,13 @@ const searchPlaces = async () => {
     let pageToken = first.data.next_page_token;
     restaurantData.push(first.data.results);
     let totalData = await fetchedOutput(pageToken);
-    console.log(totalData);
 
-    // // }
-    // console.log("out of loop");
+
     return totalData;
 }
 
 async function fetchedOutput(pageToken: any) {
-    let apikey="";
+    let apikey = "";
     let remainingRestroData: any = [];
     if (pageToken != "") {
         let result: any = await axios.post(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=51.16342766942609, 10.44767431089163&radius=45000&types=restaurant&key=${apikey}&pageToken=${pageToken}`);
